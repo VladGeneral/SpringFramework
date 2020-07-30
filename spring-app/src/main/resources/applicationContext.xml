@@ -1,18 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans  xmlns="http://www.springframework.org/schema/beans"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:context="http://www.springframework.org/schema/context"
-        xsi:schemaLocation="http://www.springframework.org/schema/beans
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <bean id="musicBean"
-          class="ru.springframework.RockMusic">
+    <context:property-placeholder location="classpath:musicPlayer.properties"/>
+<!--    <context:property-placeholder location="musicPlayer.properties"/>-->
+    <bean id="classicBean" class="ru.springframework.ClassicalMusic"/>
+    <bean id="rockBean" class="ru.springframework.RockMusic"/>
+    <bean id="jazzBean" class="ru.springframework.JazzMusic"/>
+
+    <bean id="listBean"
+          class="java.util.ArrayList">
+        <constructor-arg>
+            <list>
+                <ref bean="classicBean"/>
+                <ref bean="rockBean"/>
+                <ref bean="jazzBean"/>
+            </list>
+        </constructor-arg>
     </bean>
+
     <bean id="musicPlayer"
           class="ru.springframework.MusicPlayer">
-        <constructor-arg ref="musicBean"/>
+        <property name="musicList" ref="listBean"/>
+        <!--        <property name="music" ref="musicBean"/>-->
+       <!-- <property name="name" value="Some name"/>
+        <property name="volume" value="50"/>-->
+        <property name="name" value="${musicPlayer.name}"/>
+        <property name="volume" value="${musicPlayer.volume}"/>
     </bean>
 
 
