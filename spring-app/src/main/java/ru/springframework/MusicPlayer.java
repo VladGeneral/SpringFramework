@@ -1,10 +1,16 @@
 package ru.springframework;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class MusicPlayer {
     private Music music;
+    private ClassicalMusic classicalMusic;
+    private RockMusic rockMusic;
     private List<Music> musicList = new ArrayList<>();
     private String name;
     private int volume;
@@ -29,19 +35,34 @@ public class MusicPlayer {
         this.musicList = musicList;
     }
 
-    public MusicPlayer() {
+//    public MusicPlayer() {
+//    }
+
+
+//    public MusicPlayer(Music music) {
+//        this.music = music;
+//    }
+
+//    с autowired аннотацией название метода значения не имеет
+//    @Autowired
+//    public void setMusic(Music music) {
+//        this.music = music;
+//    }
+
+    /*@Autowired
+    public MusicPlayer(ClassicalMusic classicalMusic) {
+        this.classicalMusic = classicalMusic;
+    }*/
+
+    @Autowired
+    public MusicPlayer(ClassicalMusic classicalMusic, RockMusic rockMusic) {
+        this.classicalMusic = classicalMusic;
+        this.rockMusic = rockMusic;
     }
 
-    public MusicPlayer(Music music) {
-        this.music = music;
-    }
-
-    public void setMusic(Music music) {
-        this.music = music;
-    }
-
-    public void playMusic(){
-        System.out.println("Playing " + music.getSong());
+    public String playMusic(){
+//        System.out.println("Playing " + music.getSong());
 //        musicList.forEach(x -> System.out.println(x.getSong()));
+       return "Playing: " + classicalMusic.getSong();
     }
 }
