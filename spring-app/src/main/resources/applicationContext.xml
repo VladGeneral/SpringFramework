@@ -8,8 +8,25 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
 
     <context:property-placeholder location="classpath:musicPlayer.properties"/>
-<!--    <context:property-placeholder location="musicPlayer.properties"/>-->
-    <bean id="classicBean" class="ru.springframework.ClassicalMusic"/>
+    <!--    <context:property-placeholder location="musicPlayer.properties"/>-->
+    <!--    for one-->
+
+    <bean id="musicBean"
+          class="ru.springframework.RockMusic">
+    </bean>
+    <bean id="musicPlayer"
+          class="ru.springframework.MusicPlayer"
+          scope="prototype">
+        <property name="music" ref="musicBean"/>
+        <!-- <property name="name" value="Some name"/>
+         <property name="volume" value="50"/>-->
+        <property name="name" value="${musicPlayer.name}"/>
+        <property name="volume" value="${musicPlayer.volume}"/>
+    </bean>
+
+    <!--    for list-->
+
+    <!--<bean id="classicBean" class="ru.springframework.ClassicalMusic"/>
     <bean id="rockBean" class="ru.springframework.RockMusic"/>
     <bean id="jazzBean" class="ru.springframework.JazzMusic"/>
 
@@ -27,12 +44,12 @@
     <bean id="musicPlayer"
           class="ru.springframework.MusicPlayer">
         <property name="musicList" ref="listBean"/>
-        <!--        <property name="music" ref="musicBean"/>-->
-       <!-- <property name="name" value="Some name"/>
-        <property name="volume" value="50"/>-->
+        &lt;!&ndash;        <property name="music" ref="musicBean"/>&ndash;&gt;
+       &lt;!&ndash; <property name="name" value="Some name"/>
+        <property name="volume" value="50"/>&ndash;&gt;
         <property name="name" value="${musicPlayer.name}"/>
         <property name="volume" value="${musicPlayer.volume}"/>
     </bean>
-
+-->
 
 </beans>
