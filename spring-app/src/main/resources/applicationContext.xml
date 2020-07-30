@@ -12,17 +12,20 @@
     <!--    for one-->
 
     <bean id="musicBean"
-          class="ru.springframework.RockMusic">
+          class="ru.springframework.ClassicalMusic"
+          init-method="doMyInit"
+          destroy-method="doMyDestroy"
+          factory-method="getClassicalMusic">
     </bean>
-    <bean id="musicPlayer"
-          class="ru.springframework.MusicPlayer"
-          scope="prototype">
-        <property name="music" ref="musicBean"/>
-        <!-- <property name="name" value="Some name"/>
-         <property name="volume" value="50"/>-->
-        <property name="name" value="${musicPlayer.name}"/>
-        <property name="volume" value="${musicPlayer.volume}"/>
-    </bean>
+    <!--    <bean id="musicPlayer"-->
+    <!--          class="ru.springframework.MusicPlayer"-->
+    <!--          scope="prototype">-->
+    <!--        <property name="music" ref="musicBean"/>-->
+    <!--        &lt;!&ndash; <property name="name" value="Some name"/>-->
+    <!--         <property name="volume" value="50"/>&ndash;&gt;-->
+    <!--        <property name="name" value="${musicPlayer.name}"/>-->
+    <!--        <property name="volume" value="${musicPlayer.volume}"/>-->
+    <!--    </bean>-->
 
     <!--    for list-->
 
