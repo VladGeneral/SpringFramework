@@ -10,8 +10,8 @@ public class TestSpring {
 
         /*init destroy scopes
          * scope prototype не вызывает destroy метод*/
-        ClassicalMusic classicalMusic = context.getBean("musicBean", ClassicalMusic.class);
-        System.out.println(classicalMusic.getSong());
+//        ClassicalMusic classicalMusic = context.getBean("musicBean", ClassicalMusic.class);
+//        System.out.println(classicalMusic.getSong());
         /*/init destroy scopes*/
 
 //        MusicPlayer firstMusicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
@@ -26,6 +26,17 @@ public class TestSpring {
 //        System.out.println(secondMusicPlayer.getVolume());
 //
 //        firstMusicPlayer.playMusic();
+
+        /*annotation scope*/
+        Music music = context.getBean("rockMusic", Music.class);
+        MusicPlayer musicPlayer = new MusicPlayer(music);
+
+        musicPlayer.playMusic();
+
+        Music music2 = context.getBean("classicalMusic", Music.class);
+        MusicPlayer classicalMusicPlayer = new MusicPlayer(music2);
+
+        classicalMusicPlayer.playMusic();
 
         context.close();
     }
