@@ -8,11 +8,8 @@ public class TestSpring {
                 "applicationContext.xml"
         );
 
-//        Music music = context.getBean("musicBean", Music.class);
-//        MusicPlayer musicPlayer = new MusicPlayer(music);
-
         /*init destroy scopes
-        * scope prototype не вызывает destroy метод*/
+         * scope prototype не вызывает destroy метод*/
         ClassicalMusic classicalMusic = context.getBean("musicBean", ClassicalMusic.class);
         System.out.println(classicalMusic.getSong());
         /*/init destroy scopes*/
