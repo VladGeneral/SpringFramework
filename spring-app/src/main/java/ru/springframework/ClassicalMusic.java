@@ -7,10 +7,10 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 //prototype predestroy не вызывает
 
-@Component
+//@Component
 //@Scope("prototype")
 public class ClassicalMusic implements Music {
-    private ClassicalMusic() {
+    public ClassicalMusic() {
     }
 
     //при scope Singleton фабричный метод вызывается только один раз
