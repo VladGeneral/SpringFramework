@@ -1,8 +1,14 @@
 package ru.springframework;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+//prototype predestroy не вызывает
+
 @Component
+//@Scope("prototype")
 public class ClassicalMusic implements Music {
     private ClassicalMusic() {
     }
@@ -11,11 +17,11 @@ public class ClassicalMusic implements Music {
     public static ClassicalMusic getClassicalMusic() {
         return new ClassicalMusic();
     }
-
+    @PostConstruct
     public void doMyInit() {
         System.out.println("Initialization");
     }
-
+    @PreDestroy
     public void doMyDestroy() {
         System.out.println("Destruction");
     }
