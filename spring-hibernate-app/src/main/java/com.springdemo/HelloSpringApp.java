@@ -11,6 +11,9 @@ public class HelloSpringApp {
 
         System.out.println(coach.getDailyWorkout());
 
+        //fortuneservise new call
+        System.out.println(coach.getDailyFortune());
+
         context.close();
     }
 }

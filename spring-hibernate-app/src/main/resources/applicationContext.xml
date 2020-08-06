@@ -11,8 +11,12 @@
         <property name="printedLoggerLevel" value="FINE"/>
     </bean>
 
+    <bean id="myFortune"
+          class="com.springdemo.HappyFortuneService">
+    </bean>
     <bean id="myCoach"
-          class="com.springdemo.BaseballCoach">
+          class="com.springdemo.TrackCoach">
+        <constructor-arg ref="myFortune"/>
     </bean>
 
 </beans>
