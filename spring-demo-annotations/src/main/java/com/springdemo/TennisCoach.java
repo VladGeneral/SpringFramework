@@ -7,8 +7,21 @@ import org.springframework.stereotype.Component;
 public class TennisCoach implements Coach {
     private FortuneService fortuneService;
 
-    @Autowired
+    //if we will remove annotation, spring still work. as of spring 4.3 if we have one constructor autowired no longer needed
+    /*@Autowired
     public TennisCoach(FortuneService fortuneService) {
+        this.fortuneService = fortuneService;
+    }*/
+
+    public TennisCoach() {
+        System.out.println(">> TennisCoach inside default constructor");
+    }
+
+
+    //define a setter method
+    @Autowired
+    public void setFortuneService(FortuneService fortuneService) {
+        System.out.println(">> TennisCoach inside setFortuneService");
         this.fortuneService = fortuneService;
     }
 
