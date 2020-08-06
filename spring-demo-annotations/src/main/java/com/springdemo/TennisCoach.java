@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 //default tennisCoach
 @Component
 public class TennisCoach implements Coach {
+    @Autowired
     private FortuneService fortuneService;
 
     //if we will remove annotation, spring still work. as of spring 4.3 if we have one constructor autowired no longer needed
@@ -25,11 +26,12 @@ public class TennisCoach implements Coach {
         this.fortuneService = fortuneService;
     }*/
 
-    @Autowired
+    //define a some method
+    /*@Autowired
     public void doSomething(FortuneService fortuneService) {
-        System.out.println(">> TennisCoach inside doSomething");
+        System.out.println(">> TennisCoach inside doSomething method");
         this.fortuneService = fortuneService;
-    }
+    }*/
 
     @Override
     public String getDailyWorkout() {
