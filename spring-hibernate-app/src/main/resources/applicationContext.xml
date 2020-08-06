@@ -11,12 +11,18 @@
         <property name="printedLoggerLevel" value="FINE"/>
     </bean>
 
-    <bean id="myFortune"
+    <bean id="myFortuneService"
           class="com.springdemo.HappyFortuneService">
     </bean>
     <bean id="myCoach"
           class="com.springdemo.TrackCoach">
-        <constructor-arg ref="myFortune"/>
+        <constructor-arg ref="myFortuneService"/>
+    </bean>
+
+    <bean id="myCricketCoach"
+          class="com.springdemo.CricketCoach">
+<!--        set up setter injection-->
+        <property name="fortuneService" ref="myFortuneService"/>
     </bean>
 
 </beans>
