@@ -7,7 +7,7 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
     <bean id="myLoggerConfig" class="com.springdemo.MyLoggerConfig" init-method="initLogger">
-        <property name="rootLoggerLevel" value="FINE" />
+        <property name="rootLoggerLevel" value="FINE"/>
         <property name="printedLoggerLevel" value="FINE"/>
     </bean>
 
@@ -21,8 +21,13 @@
 
     <bean id="myCricketCoach"
           class="com.springdemo.CricketCoach">
-<!--        set up setter injection-->
+        <!--        set up setter injection-->
         <property name="fortuneService" ref="myFortuneService"/>
+
+        <!--        inject literal values-->
+        <property name="emailAddress" value="thebestcoach@gmail.com"/>
+        <property name="team" value="Sunrisers Hyderabad"/>
+
     </bean>
 
 </beans>
