@@ -14,7 +14,12 @@
 Hello world of spring!
 <br>
 Student name: ${param.studentName}
-<br>
+<br><br>
+
+The message: ${message}
+<br><br>
+
+
 <a href="/showForm">Hello world form</a>
 </body>
 </html>
