@@ -10,13 +10,17 @@ public class SwimJavaConfigDemoApp {
                 new AnnotationConfigApplicationContext(SportConfig.class);
 
         //get the bean from spring container
-        Coach coach = context.getBean("swimCoach", Coach.class);
+        SwimCoach coach = context.getBean("swimCoach", SwimCoach.class);
 
         //call a method on the bean
         System.out.println(coach.getDailyWorkout());
 
         //call method to get daily fortune
         System.out.println(coach.getDailyFortune());
+
+        //properties
+        System.out.println(coach.getEmail());
+        System.out.println(coach.getTeam());
 
         //close the context
         context.close();
