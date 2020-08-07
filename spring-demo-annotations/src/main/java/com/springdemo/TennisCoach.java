@@ -1,11 +1,13 @@
 package com.springdemo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 //default tennisCoach
 @Component
 public class TennisCoach implements Coach {
     @Autowired
+    @Qualifier("randomFortuneService")
     private FortuneService fortuneService;
 
     //if we will remove annotation, spring still work. as of spring 4.3 if we have one constructor autowired no longer needed
