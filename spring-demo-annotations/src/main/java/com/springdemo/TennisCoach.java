@@ -2,9 +2,11 @@ package com.springdemo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 //default tennisCoach
 @Component
+@Scope("prototype")
 public class TennisCoach implements Coach {
     @Autowired
     @Qualifier("randomFortuneService")
@@ -23,7 +25,7 @@ public class TennisCoach implements Coach {
 
     //define a setter method
     /*@Autowired
-    public void setFortuneService(FortuneService fortuneService) {
+    public void setFortuneService(@Qualifier("randomFortuneService")FortuneService fortuneService) {
         System.out.println(">> TennisCoach inside setFortuneService");
         this.fortuneService = fortuneService;
     }*/
