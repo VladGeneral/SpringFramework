@@ -5,7 +5,7 @@ import javax.validation.ConstraintValidatorContext;
 import java.lang.annotation.Annotation;
 
 public class CourseCodeConstraintValidator implements ConstraintValidator<CourseCode, String> {
-    private String coursePrefix;
+    private String[] coursePrefix;
 
     @Override
     public void initialize(CourseCode courseCode) {
@@ -14,9 +14,14 @@ public class CourseCodeConstraintValidator implements ConstraintValidator<Course
 
     @Override
     public boolean isValid(String str, ConstraintValidatorContext constraintValidatorContext) {
-        boolean result;
+        boolean result = false;
         if (str != null) {
-            result = str.startsWith(coursePrefix);
+            for (String tempPrefix : coursePrefix){
+                result = str.startsWith(tempPrefix);
+                if (result){
+                    break;
+                }
+            }
         } else {
             result = true;
         }
