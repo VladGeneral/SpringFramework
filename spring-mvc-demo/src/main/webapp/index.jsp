@@ -2,6 +2,6 @@
 <html>
 <body>
 <h2>Hello World!</h2>
-<c:redirect url="/showForm"/>
+<a href="/hello/showForm"> Hello world form </a>
 </body>
 </html>

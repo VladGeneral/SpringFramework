@@ -11,7 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-<form action="/processFormVersionThree" method="get">
+<form action="./processFormVersionThree" method="get">
     <input type="text" name="studentName" placeholder="Whats your name?">
 
     <input type="submit">

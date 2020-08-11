@@ -20,6 +20,6 @@ The message: ${message}
 <br><br>
 
 
-<a href="/showForm">Hello world form</a>
+<a href="./showForm">Hello world form</a>
 </body>
 </html>
