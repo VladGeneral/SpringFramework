@@ -6,8 +6,9 @@ import javax.validation.constraints.Size;
 public class Customer {
 
     private String firstName;
-    @NotNull
-    @Size(min = 1, message = "is required")
+    //not null message for InitBinder in the CustomerController or he will write - must not null
+    @NotNull(message = "is required from @NotNull")
+    @Size(min = 1, message = "is required from @Size")
     private String lastName;
 
     public String getFirstName() {
