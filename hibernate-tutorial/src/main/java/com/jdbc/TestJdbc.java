@@ -23,7 +23,5 @@ public class TestJdbc {
 
     public static void main(String[] args) {
         TestJdbc testJdbc = new TestJdbc();
-
-
     }
 }
