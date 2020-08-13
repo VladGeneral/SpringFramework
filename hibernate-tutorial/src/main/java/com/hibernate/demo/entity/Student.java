@@ -4,13 +4,14 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.UUID;
 
 @Entity
 @Table(name = "student")
 public class Student {
     @Id
     @Column(name = "id")
-    private int id;
+    private String id;
 
     @Column(name = "first_name")
     private String firstName;
@@ -26,16 +27,17 @@ public class Student {
     }
 
     public Student(String firstName, String lastName, String email) {
+        this.id = UUID.randomUUID().toString();
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
