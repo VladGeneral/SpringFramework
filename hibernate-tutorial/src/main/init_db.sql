@@ -1,7 +1,7 @@
 create table student
 (
 
-	id char(36) not null
+	id serial not null
 		constraint student_pk
 			primary key,
 	first_name varchar(45),
