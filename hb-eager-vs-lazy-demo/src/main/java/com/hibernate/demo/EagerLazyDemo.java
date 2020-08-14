@@ -25,12 +25,17 @@ public class EagerLazyDemo {
             Instructor instructor = session.get(Instructor.class, 4);
             System.out.println("||instructor " + instructor);
 
-            //get course
-
+            System.out.println("||courses " + instructor.getCourses());
 
             //commit
             session.getTransaction().commit();
+            //close the session
             session.close();
+
+            System.out.println("\nclosing the session\n");
+            //option 1 call getter method while session is open line 28 line 38 will work(уже в памяти)
+
+            //get course
             System.out.println("||courses " + instructor.getCourses());
 
             System.out.println("Done");
