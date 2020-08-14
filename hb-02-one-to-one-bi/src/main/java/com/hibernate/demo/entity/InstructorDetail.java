@@ -82,7 +82,6 @@ public class InstructorDetail {
                 "id=" + id +
                 ", youtubeChannel='" + youtubeChannel + '\'' +
                 ", hobby='" + hobby + '\'' +
-                ", instructor=" + instructor +
                 '}';
     }
 }
