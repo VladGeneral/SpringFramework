@@ -22,14 +22,16 @@ public class EagerLazyDemo {
             session.beginTransaction();
 
             //get instructor from db
-            Instructor instructor = session.get(Instructor.class,4);
+            Instructor instructor = session.get(Instructor.class, 4);
             System.out.println("||instructor " + instructor);
 
             //get course
-            System.out.println("||courses " + instructor.getCourses());
+
 
             //commit
             session.getTransaction().commit();
+            session.close();
+            System.out.println("||courses " + instructor.getCourses());
 
             System.out.println("Done");
 
