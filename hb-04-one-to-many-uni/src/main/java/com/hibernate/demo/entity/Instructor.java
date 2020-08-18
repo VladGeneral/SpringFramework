@@ -107,14 +107,13 @@ public class Instructor {
 
     //add convenience methods for bi-direct relationship
 
-    public void add(Course course){
-        if (courses == null){
+    public void add(Course course) {
+        if (courses == null) {
             System.out.println("course == null");
             courses = new ArrayList<>();
-        } else {
-            courses.add(course);
-            course.setInstructor(this);
         }
+        courses.add(course);
+        course.setInstructor(this);
     }
 
     @Override

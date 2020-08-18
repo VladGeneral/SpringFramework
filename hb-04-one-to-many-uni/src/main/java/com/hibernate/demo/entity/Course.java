@@ -70,11 +70,10 @@ public class Course {
 
     public void addReview(Review review) {
         if (reviews == null) {
-            System.out.println("reviews == null");
+            System.out.println("reviews == null(add review)");
             reviews = new ArrayList<>();
-        } else {
-            reviews.add(review);
         }
+        reviews.add(review);
     }
 
     @Override
