@@ -5,7 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class CreateCoursesAndReviewsDemo {
+public class CreateCourseForMaryDemo {
     public static void main(String[] args) {
         SessionFactory factory = new Configuration()
                 .configure("hibernate.cfg.xml")
@@ -21,18 +21,18 @@ public class CreateCoursesAndReviewsDemo {
             //start a transaction
             session.beginTransaction();
 
-            //create a course
-            Course course = session.get(Course.class, 14);
+            Student student = session.get(Student.class, 7);
 
-            //and some reviews
-            course.addReview(new Review("great review1"));
-            course.addReview(new Review("grgreat review2"));
-            course.addReview(new Review("bad reviewreview3"));
-            // save the course
-            System.out.println("saving course");
-            System.out.println(course);
-            System.out.println(course.getReviews());
-            session.save(course);
+            Course course1 = new Course("course 1");
+            Course course2 = new Course("course 2");
+
+            //add student to the course
+            course1.addStudent(student);
+            course2.addStudent(student);
+
+            System.out.println("saving courses");
+            session.save(course1);
+            session.save(course2);
 
             //commit
             session.getTransaction().commit();

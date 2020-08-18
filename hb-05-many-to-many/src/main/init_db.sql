@@ -68,14 +68,13 @@ create unique index course_title_uindex
 
 create table course_student
 (
-	course_id integer not null
+	course_id int not null
 		constraint course_student_course_id_fk
 			references course,
-	student_id integer not null
-		constraint course_student_pk
-			primary key
+	student_id int not null
 		constraint course_student_student_id_fk
-			references student
+			references student,
+	primary key (course_id,student_id)
 );
 
 alter table course_student owner to postgres;
