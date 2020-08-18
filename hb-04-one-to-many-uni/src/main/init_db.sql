@@ -66,5 +66,35 @@ create unique index course_id_uindex
 create unique index course_title_uindex
 	on course (title);
 
+create table course_student
+(
+	course_id integer not null
+		constraint course_student_course_id_fk
+			references course,
+	student_id integer not null
+		constraint course_student_pk
+			primary key
+		constraint course_student_student_id_fk
+			references student
+);
+
+alter table course_student owner to postgres;
+
+create table student
+(
+	id serial not null
+		constraint student_pk
+			primary key,
+	first_name varchar(45),
+	last_name varchar(45),
+	email varchar(45)
+);
+
+alter table student owner to postgres;
+
+create unique index student_id_uindex
+	on student (id);
+
+
 
 
