@@ -42,7 +42,7 @@
             </tr>
             <tr>
                 <td>
-                    <label>First Name:</label>
+                    <label>Last Name:</label>
                 </td>
                 <td>
                     <form:input path="lastName"/>
@@ -50,7 +50,7 @@
             </tr>
             <tr>
                 <td>
-                    <label>First Name:</label>
+                    <label>Email:</label>
                 </td>
                 <td>
                     <form:input path="email"/>
