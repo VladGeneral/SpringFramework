@@ -11,8 +11,8 @@
 <head>
     <title>List customers</title>
     <link type="text/css"
-    rel="stylesheet"
-    href="${pageContext.request.contextPath}/resources/css/style.css">
+          rel="stylesheet"
+          href="${pageContext.request.contextPath}/resources/css/style.css">
 </head>
 <body>
 
@@ -24,6 +24,12 @@
 
 <div id="container">
     <div id="content">
+
+        <%--        pu add customer button--%>
+        <input type="button" value="Add customer"
+               onclick="window.location.href='showFormForAdd'; return false"
+               class="add-button"/>
+
         <%--    add our html table here--%>
         <table>
             <tr>

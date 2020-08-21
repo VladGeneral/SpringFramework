@@ -3,6 +3,7 @@ package com.springdemo.controller;
 import com.springdemo.dao.CustomerDAO;
 import com.springdemo.entity.Customer;
 import com.springdemo.service.CustomerService;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +21,7 @@ public class CustomerController {
     private CustomerService customerService;
 
     @GetMapping("/list")
-    public String listCustomers(Model model){
+    public String listCustomers(Model model) {
 
         //get customers from the service
         List<Customer> customers = customerService.getCustomers();
@@ -28,6 +29,11 @@ public class CustomerController {
         //add the customers to the model
         model.addAttribute("customers", customers);
         return "list-customers";
+    }
+
+    @GetMapping("/showFormForAdd")
+    public String showFormForAdd(Model model){
+        return "customer-form";
     }
 
 }
