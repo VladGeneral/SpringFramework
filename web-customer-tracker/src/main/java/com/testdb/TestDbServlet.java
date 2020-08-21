@@ -23,7 +23,11 @@ public class TestDbServlet extends HttpServlet {
         try {
             PrintWriter out = response.getWriter();
             out.println("connecting to " + URL);
-
+            try {
+                Class.forName("org.postgresql.Driver");
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
             Connection connection = DriverManager.getConnection(URL, USER, PASS);
             out.println("Connection successful");
 
