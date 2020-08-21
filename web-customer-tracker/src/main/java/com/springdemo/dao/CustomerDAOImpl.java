@@ -20,7 +20,6 @@ public class CustomerDAOImpl implements CustomerDAO {
 
     //transactional from spring allow simplify open/close transaction
     @Override
-    @Transactional
     public List<Customer> getCustomers() {
 
         //get the current hibernate session
