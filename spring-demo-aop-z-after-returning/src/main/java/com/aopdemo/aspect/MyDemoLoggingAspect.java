@@ -2,12 +2,15 @@ package com.aopdemo.aspect;
 
 import com.aopdemo.Account;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Aspect
 @Component
@@ -35,12 +38,22 @@ public class MyDemoLoggingAspect {
         //loop args
         for (Object o : args) {
             System.out.println(o);
-            if (o instanceof Account){
+            if (o instanceof Account) {
                 //downcast and print Account stuff
                 Account account = (Account) o;
                 System.out.println("account name " + account.getName());
             }
         }
+    }
+
+    @AfterReturning(
+            pointcut = "execution(* com.aopdemo.dao.AccountDAO.findAccounts(..))",
+            returning = "result")
+    public void afterReturningFindAccountsAdvice(JoinPoint joinPoint, List<Account> result) {
+        String method = joinPoint.getSignature().toShortString();
+        System.out.println("\n====>>> Executing @AfterReturning on method: " + method);
+
+        System.out.println("\n====>>> result is: " + result);
 
     }
 }
