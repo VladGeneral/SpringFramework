@@ -9,4 +9,9 @@ public class MembershipDAO {
         System.out.println(getClass() + ": DOING MY DB WORD: ADDING AN ACCOUNT");
         return true;
     }
+
+    public boolean goToSleep(){
+        System.out.println(getClass() + ": goToSleep()");
+        return false;
+    }
 }
