@@ -1,6 +1,7 @@
 package com.springdemo.aspect;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -17,33 +18,49 @@ public class CRMLoggingAspect {
 
     //setup pointcuts
     @Pointcut("execution(* com.springdemo.controller.*.*(..))")
-    private void forControllerPackage(){
+    private void forControllerPackage() {
 
     }
 
     @Pointcut("execution(* com.springdemo.service.*.*(..))")
-    private void forServicePackage(){
+    private void forServicePackage() {
 
     }
 
     @Pointcut("execution(* com.springdemo.dao.*.*(..))")
-    private void forDaoPackage(){
+    private void forDaoPackage() {
 
     }
 
     @Pointcut("forControllerPackage() || forServicePackage() || forDaoPackage()")
-    private void forAppFlow(){
+    private void forAppFlow() {
 
     }
 
     //add @Before
     @Before("forAppFlow()")
-    public void before(JoinPoint joinPoint){
+    public void before(JoinPoint joinPoint) {
         //display method
         logger.info("\n=====>>> in @Before: calling method: " + joinPoint.getSignature().toShortString());
 
-        //display the arguments
+        //display the arguments to the method
+
+        //get the arguments
+        Object[] args = joinPoint.getArgs();
+        //loop thru
+        for (Object o : args) {
+            logger.info("=======>>> argument: " + o);
+        }
     }
 
     //add @AfterReturning advice
+    @AfterReturning(
+            pointcut = "forAppFlow()",
+            returning = "result")
+    public void afterReturning(JoinPoint joinPoint, Object result) {
+        //display method we are returning
+        logger.info("\n=====>>> in @AfterReturning: from method: " + joinPoint.getSignature().toShortString());
+        //display data returned
+        logger.info("========> result: " + result);
+    }
 }
