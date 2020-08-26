@@ -111,8 +111,8 @@ public class MyDemoLoggingAspect {
         } catch (Exception e) {
             //log
             logger.warning("logger warning - " + e.getMessage());
-            //give user a custom message
-            result = "Major accident! But no worries";
+            //rethrow exception
+            throw e;
         }
 
         //get end timestap
