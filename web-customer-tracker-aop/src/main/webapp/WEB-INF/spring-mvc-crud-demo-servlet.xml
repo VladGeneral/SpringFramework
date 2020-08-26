@@ -3,6 +3,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="
 		http://www.springframework.org/schema/beans
@@ -12,49 +13,52 @@
     	http://www.springframework.org/schema/tx
         http://www.springframework.org/schema/tx/spring-tx.xsd
     	http://www.springframework.org/schema/mvc
-        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-   <context:component-scan base-package="com.springdemo"/>
-   <mvc:annotation-driven/>
+    <context:component-scan base-package="com.springdemo"/>
+    <mvc:annotation-driven/>
+<!--   add AspectJ autoproxy-->
+    <aop:aspectj-autoproxy/>
+    <bean
+            class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/view/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
 
-   <bean
-           class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-      <property name="prefix" value="/WEB-INF/view/"/>
-      <property name="suffix" value=".jsp"/>
-   </bean>
 
+    <bean id="myDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+          destroy-method="close">
+        <property name="driverClass" value="org.postgresql.Driver"/>
+        <property name="jdbcUrl" value="jdbc:postgresql://127.0.0.1:5432/web_customer_tracker"/>
+        <property name="user" value="postgres"/>
+        <property name="password" value="postgres"/>
 
-   <bean id="myDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
-         destroy-method="close">
-      <property name="driverClass" value="org.postgresql.Driver"/>
-      <property name="jdbcUrl" value="jdbc:postgresql://127.0.0.1:5432/web_customer_tracker"/>
-      <property name="user" value="postgres"/>
-      <property name="password" value="postgres"/>
+        <property name="minPoolSize" value="5"/>
+        <property name="maxPoolSize" value="20"/>
+        <property name="maxIdleTime" value="30000"/>
+    </bean>
 
-      <property name="minPoolSize" value="5"/>
-      <property name="maxPoolSize" value="20"/>
-      <property name="maxIdleTime" value="30000"/>
-   </bean>
+    <bean id="sessionFactory"
+          class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="myDataSource"/>
+        <property name="packagesToScan" value="com.springdemo.entity"/>
 
-   <bean id="sessionFactory"
-         class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
-      <property name="dataSource" ref="myDataSource"/>
-      <property name="packagesToScan" value="com.springdemo.entity"/>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL10Dialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+            </props>
+        </property>
+    </bean>
 
-      <property name="hibernateProperties">
-         <props>
-            <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL10Dialect</prop>
-            <prop key="hibernate.show_sql">true</prop>
-         </props>
-      </property>
-   </bean>
+    <bean id="myTransactionManager"
+          class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <tx:annotation-driven transaction-manager="myTransactionManager"/>
 
-   <bean id="myTransactionManager"
-         class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-      <property name="sessionFactory" ref="sessionFactory"/>
-   </bean>
-   <tx:annotation-driven transaction-manager="myTransactionManager"/>
-
-<!--   add support for reading web resources css etc-->
-   <mvc:resources mapping="/resources/**" location="/resources/"/>
+    <!--   add support for reading web resources css etc-->
+    <mvc:resources mapping="/resources/**" location="/resources/"/>
 </beans>
