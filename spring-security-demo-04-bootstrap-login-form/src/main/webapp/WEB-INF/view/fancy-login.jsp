@@ -1,3 +1,5 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
 
@@ -33,7 +35,7 @@
 				<div style="padding-top: 30px" class="panel-body">
 
 					<!-- Login Form -->
-					<form action="${pageContext.request.contextPath}/authenticateTheUser" method="POST" class="form-horizontal">
+					<form:form action="${pageContext.request.contextPath}/authenticateTheUser" method="POST" class="form-horizontal">
 
 					    <!-- Place for messages: error, alert etc ... -->
 					    <div class="form-group">
@@ -79,7 +81,7 @@
 							</div>
 						</div>
 
-					</form>
+					</form:form>
 
 				</div>
 
