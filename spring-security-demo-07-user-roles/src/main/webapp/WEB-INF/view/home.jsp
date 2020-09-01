@@ -17,7 +17,7 @@
 <h2>luv2code Home page</h2>
 Welcome to the luv2code company home page
 <p>
-    User: <security:authentication property="username"/>
+    User: <security:authentication property="principal.username"/>
     <br>
     <br>
     Role(s): <security:authentication property="principal.authorities"/>
