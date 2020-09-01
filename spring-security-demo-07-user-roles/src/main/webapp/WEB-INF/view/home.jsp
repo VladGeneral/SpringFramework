@@ -24,17 +24,22 @@ Welcome to the luv2code company home page
 </p>
 <hr>
 <%--    aad leaders link--%>
-<p>
-    <a href="${pageContext.request.contextPath}/leaders">LeaderShip Meeting</a>
-    (Only for Manager peeps
-</p>
-<hr>
+<security:authorize access="hasRole('MANAGER')">
+    <p>
+        <a href="${pageContext.request.contextPath}/leaders">LeaderShip Meeting</a>
+        (Only for Manager peeps
+    </p>
+    <hr>
+</security:authorize>
+
 <%--    aad admins link--%>
-<p>
-    <a href="${pageContext.request.contextPath}/systems">IT Systems Meeting</a>
-    (Only for Admin peeps)
-</p>
-<hr>
+<security:authorize access="hasRole('ADMIN')">
+    <p>
+        <a href="${pageContext.request.contextPath}/systems">IT Systems Meeting</a>
+        (Only for Admin peeps)
+    </p>
+    <hr>
+</security:authorize>
 
 <p>
     <form:form action="${pageContext.request.contextPath}/logout"
