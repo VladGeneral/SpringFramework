@@ -22,6 +22,13 @@ Welcome to the luv2code company home page
     <br>
     Role(s): <security:authentication property="principal.authorities"/>
 </p>
+<hr>
+<%--    aad leaders link--%>
+<p>
+    <a href="${pageContext.request.contextPath}/leaders">LeaderShip Meeting</a>
+    (Only for Manager)
+</p>
+<hr>
 
 <p>
     <form:form action="${pageContext.request.contextPath}/logout"
