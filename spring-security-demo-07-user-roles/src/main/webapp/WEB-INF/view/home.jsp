@@ -26,7 +26,13 @@ Welcome to the luv2code company home page
 <%--    aad leaders link--%>
 <p>
     <a href="${pageContext.request.contextPath}/leaders">LeaderShip Meeting</a>
-    (Only for Manager)
+    (Only for Manager peeps
+</p>
+<hr>
+<%--    aad admins link--%>
+<p>
+    <a href="${pageContext.request.contextPath}/systems">IT Systems Meeting</a>
+    (Only for Admin peeps)
 </p>
 <hr>
 
