@@ -2,6 +2,7 @@ package com.springdemo.rest;
 
 import com.springdemo.entity.Student;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,5 +29,12 @@ public class StudentRestController {
     public List<Student> getStudents() {
 
         return students;
+    }
+
+    //define endpoint for /students/{studentId} - retrieve single student by arraylist index
+    @GetMapping("/students/{studentId}")
+    public Student getStudent(@PathVariable int studentId){
+
+        return students.get(studentId);
     }
 }
