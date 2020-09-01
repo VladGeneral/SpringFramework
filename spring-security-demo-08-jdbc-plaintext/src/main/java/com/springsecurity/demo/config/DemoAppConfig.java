@@ -53,9 +53,23 @@ public class DemoAppConfig {
     logger.info(">>>>>JDBC.url= "+ environment.getProperty("jdbc.url"));
     logger.info(">>>>>JDBC.user= "+ environment.getProperty("jdbc.user"));
         //set database connection props
+        dataSource.setJdbcUrl(environment.getProperty("jdbc.url"));
+        dataSource.setUser(environment.getProperty("jdbc.user"));
+        dataSource.setPassword(environment.getProperty("jdbc.password"));
 
         //set connection pool props
+        dataSource.setInitialPoolSize(getIntProperty("connection.pool.initialPoolSize"));
+        dataSource.setMinPoolSize(getIntProperty("connection.pool.minPoolSize"));
+        dataSource.setMaxPoolSize(getIntProperty("connection.pool.maxPoolSize"));
+        dataSource.setMaxIdleTime(getIntProperty("connection.pool.maxIdleTime"));
 
         return dataSource;
+    }
+
+    //convert prop to int
+    private int getIntProperty(String propName){
+        String value = environment.getProperty(propName);
+        int intVal = Integer.parseInt(value);
+        return intVal;
     }
 }
