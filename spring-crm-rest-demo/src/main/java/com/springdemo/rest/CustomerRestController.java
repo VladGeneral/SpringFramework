@@ -39,4 +39,18 @@ public class CustomerRestController {
 
         return customer;
     }
+
+    @PutMapping("/customers")
+    public Customer updateCustomer(@RequestBody Customer customer){
+        customerService.saveCustomer(customer);
+        return customer;
+        /*
+        * postman PUT -> body-> raw->Json->
+        * {
+    "id" : 1,
+    "firstName" : "Daniel",
+    "lastName" : "Vega",
+    "email" : "dasds@luv2code.com"
+}*/
+    }
 }
