@@ -2,6 +2,7 @@ package com.springboot.demo.springbootthumeleafdemo.controller;
 
 import com.springboot.demo.springbootthumeleafdemo.model.Employee;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -24,5 +25,11 @@ public class EmployeeController {
         employees.add(employee1);
         employees.add(employee2);
         employees.add(employee3);
+    }
+
+    @GetMapping("/list")
+    public String listEmployees(Model model){
+        model.addAttribute("employees", employees);
+        return "list-employees";
     }
 }
