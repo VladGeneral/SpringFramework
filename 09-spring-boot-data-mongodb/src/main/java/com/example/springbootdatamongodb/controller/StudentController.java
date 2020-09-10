@@ -74,4 +74,9 @@ public class StudentController {
     public List<Student> getByDepartmentName(@RequestParam String name){
         return studentService.getByDepartmentName(name);
     }
+
+    @GetMapping("/bySubjectName")
+    public List<Student> getBySubjectName(@RequestParam String name){
+        return studentService.getBySubjectName(name);
+    }
 }
