@@ -42,4 +42,9 @@ public class StudentController {
     public String updateStudent(@PathVariable String id){
         return studentService.deleteStudent(id);
     }
+
+    @GetMapping("/studentsByName/{name}")
+    public List<Student> studentsByName(@PathVariable String name){
+        return studentService.getStudentsByName(name);
+    }
 }

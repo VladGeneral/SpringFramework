@@ -48,4 +48,8 @@ public class StudentService {
         studentRepository.deleteById(id);
         return "Student has been delete";
     }
+
+    public List<Student> getStudentsByName(String name) {
+        return studentRepository.findByName(name);
+    }
 }
