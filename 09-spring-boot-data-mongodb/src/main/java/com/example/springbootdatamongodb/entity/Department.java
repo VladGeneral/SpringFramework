@@ -1,9 +1,15 @@
 package com.example.springbootdatamongodb.entity;
 
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+@Document(collection = "department")
 public class Department {
+    @Id
+    private String id;
+
     @Field(name = "department_name")
     private String departmentName;
 
@@ -23,5 +29,13 @@ public class Department {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
