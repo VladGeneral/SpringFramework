@@ -52,4 +52,10 @@ public class StudentController {
     public List<Student> studentsByNameAndEmail(@RequestParam String name, @RequestParam String email){
         return studentService.getStudentsByNameAndEmail(name, email);
     }
+
+    @GetMapping("/studentsByNameOrEmail")
+    public List<Student> studentsByNameOrEmail(@RequestParam String name,
+                                               @RequestParam String email){
+        return studentService.getStudentsByNameOrEmail(name, email);
+    }
 }
