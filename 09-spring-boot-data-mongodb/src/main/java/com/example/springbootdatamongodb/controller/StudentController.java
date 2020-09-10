@@ -84,4 +84,9 @@ public class StudentController {
     public List<Student> getEmailLike(@RequestParam String email){
         return studentService.getEmailLike(email);
     }
+
+    @GetMapping("/nameStartsWith")
+    public List<Student> nameStartsWith(@RequestParam String name){
+        return studentService.nameStartsWith(name);
+    }
 }
