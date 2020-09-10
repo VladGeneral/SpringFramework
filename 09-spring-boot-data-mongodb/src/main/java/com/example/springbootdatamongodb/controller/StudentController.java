@@ -1,6 +1,9 @@
 package com.example.springbootdatamongodb.controller;
 
 import com.example.springbootdatamongodb.entity.Student;
+import com.example.springbootdatamongodb.entity.Subject;
+import com.example.springbootdatamongodb.repository.DepartmentRepository;
+import com.example.springbootdatamongodb.repository.SubjectRepository;
 import com.example.springbootdatamongodb.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +15,12 @@ import java.util.List;
 public class StudentController {
     @Autowired
     private StudentService studentService;
+
+    @Autowired
+    private DepartmentRepository departmentRepository;
+
+    @Autowired
+    private SubjectRepository subjectRepository;
 //
 //    @Autowired
 //    public StudentController(StudentService studentService) {
@@ -20,6 +29,12 @@ public class StudentController {
 
     @PostMapping("/create")
     public Student createStudent(@RequestBody Student student){
+        if (student.getDepartment() != null){
+            departmentRepository.save(student.getDepartment());
+        }
+        if (student.getSubjects() != null && student.getSubjects().size() > 0 ){
+            subjectRepository.saveAll(student.getSubjects());
+        }
         return studentService.createStudent(student);
     }
 
