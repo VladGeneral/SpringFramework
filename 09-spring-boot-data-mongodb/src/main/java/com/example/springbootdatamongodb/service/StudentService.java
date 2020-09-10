@@ -90,4 +90,8 @@ public class StudentService {
     public List<Student> nameStartsWith(String name) {
         return studentRepository.findByNameStartsWith(name);
     }
+
+    public List<Student> byDepartmentId(String id) {
+        return studentRepository.findByDepartmentId(id);
+    }
 }
