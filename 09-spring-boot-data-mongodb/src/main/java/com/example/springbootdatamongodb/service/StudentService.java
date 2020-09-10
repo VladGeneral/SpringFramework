@@ -3,6 +3,8 @@ package com.example.springbootdatamongodb.service;
 import com.example.springbootdatamongodb.entity.Student;
 import com.example.springbootdatamongodb.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -59,5 +61,10 @@ public class StudentService {
 
     public List<Student> getStudentsByNameOrEmail(String name, String email) {
         return studentRepository.findByNameOrEmail(name, email);
+    }
+
+    public List<Student> getAllWithPagination(int pageNo, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
+        return studentRepository.findAll(pageable).getContent();
     }
 }
