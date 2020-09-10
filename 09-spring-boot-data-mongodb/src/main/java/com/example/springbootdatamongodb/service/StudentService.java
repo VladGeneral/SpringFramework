@@ -71,6 +71,11 @@ public class StudentService {
 
     public List<Student> getAllWithSorting() {
         Sort sort = Sort.by(Sort.Direction.ASC,"name");
+        //or Sort.Direction.ASC,"name", "email", "etc"
         return studentRepository.findAll(sort);
+    }
+
+    public List<Student> getByDepartmentName(String name) {
+        return studentRepository.findByDepartmentDepartmentName(name);
     }
 }
