@@ -5,6 +5,7 @@ import com.example.springbootdatamongodb.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -66,5 +67,10 @@ public class StudentService {
     public List<Student> getAllWithPagination(int pageNo, int pageSize) {
         Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
         return studentRepository.findAll(pageable).getContent();
+    }
+
+    public List<Student> getAllWithSorting() {
+        Sort sort = Sort.by(Sort.Direction.ASC,"name");
+        return studentRepository.findAll(sort);
     }
 }

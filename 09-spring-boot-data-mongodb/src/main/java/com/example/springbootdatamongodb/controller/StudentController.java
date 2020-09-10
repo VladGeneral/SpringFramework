@@ -60,8 +60,13 @@ public class StudentController {
     }
 
     @GetMapping("/allWithPagination")
-    public List<Student> getAllwithPagination(@RequestParam int pageNo,
+    public List<Student> getAllWithPagination(@RequestParam int pageNo,
                                                @RequestParam int pageSize){
         return studentService.getAllWithPagination(pageNo,pageSize);
+    }
+
+    @GetMapping("/allWithSorting")
+    public List<Student> getAllWithSorting(){
+        return studentService.getAllWithSorting();
     }
 }
