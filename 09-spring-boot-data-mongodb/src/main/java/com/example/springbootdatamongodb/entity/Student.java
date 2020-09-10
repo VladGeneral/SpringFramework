@@ -23,6 +23,9 @@ public class Student {
 
     private List<Subject> subjects;
 
+    public Student() {
+    }
+
     public Student(String id, Department department) {
         this.id = id;
         this.department = department;
