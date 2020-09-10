@@ -43,4 +43,9 @@ public class StudentService {
     public Student updateStudent(Student student) {
         return studentRepository.save(student);
     }
+
+    public String deleteStudent(String id) {
+        studentRepository.deleteById(id);
+        return "Student has been delete";
+    }
 }
