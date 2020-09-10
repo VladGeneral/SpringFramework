@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Service
 public class StudentService {
     @Autowired
@@ -19,5 +21,17 @@ public class StudentService {
     @Transactional
     public Student createStudent(Student student) {
        return studentRepository.save(student);
+    }
+
+    @Transactional
+    public Student getStudentById(String id) {
+        Optional<Student> result = studentRepository.findById(id);
+        Student student;
+        if (result.isPresent()) {
+            student = result.get();
+        } else {
+            throw new RuntimeException("Did not find employee id - " + id);
+        }
+        return student;
     }
 }
