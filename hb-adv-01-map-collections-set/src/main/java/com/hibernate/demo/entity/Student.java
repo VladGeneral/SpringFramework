@@ -1,6 +1,8 @@
 package com.hibernate.demo.entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table
@@ -19,10 +21,27 @@ public class Student {
     @Column(name = "email")
     private String email;
 
+    @ElementCollection
+    @CollectionTable(name = "image",
+            joinColumns = @JoinColumn(name = "student_id"))
+    @Column(name = "file_name")
+    private Set<String> images = new HashSet<>();
+
+    public Student() {
+    }
+
     public Student(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+    }
+
+    public Set<String> getImages() {
+        return images;
+    }
+
+    public void setImages(Set<String> images) {
+        this.images = images;
     }
 
     public int getId() {
