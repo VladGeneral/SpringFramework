@@ -24,7 +24,6 @@ public class Student {
 
     @ElementCollection
     @CollectionTable(name = "image")
-    //@OrderBy//only one possible order; file_name asc
     @org.hibernate.annotations.OrderBy(clause = "file_name desc") //default asc
     @Column(name = "file_name")
     private Set<String> images = new LinkedHashSet();
