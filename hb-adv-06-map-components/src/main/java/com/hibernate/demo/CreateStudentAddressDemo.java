@@ -1,5 +1,6 @@
 package com.hibernate.demo;
 
+import com.hibernate.demo.entity.Address;
 import com.hibernate.demo.entity.Student;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -13,18 +14,20 @@ public class CreateStudentAddressDemo {
         SessionFactory sessionFactory = new Configuration()
                 .configure("hibernate.cfg.xml")
                 .addAnnotatedClass(Student.class)
+                .addAnnotatedClass(Address.class)
                 .buildSessionFactory();
 
 
         try(Session session = sessionFactory.getCurrentSession()) {
             Student student = new Student("john", "doe", "johnd@dfs.dd");
-            List<String> images = student.getImages();
-            images.add("photo1.jpg");
-            images.add("photo2.jpg");
-            images.add("photo3.jpg");
-            images.add("photo4.jpg");
+
+            Address address = new Address("some street","some sity", "600222");
 
             session.beginTransaction();
+
+
+            student.setHomeAddress(address);
+
 
             session.persist(student);
 
