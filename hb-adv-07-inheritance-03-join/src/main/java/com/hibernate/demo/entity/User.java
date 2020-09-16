@@ -8,12 +8,12 @@ import java.util.Set;
 
 @Entity
 @Table(name = "users")
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)  //default optional
+@Inheritance(strategy = InheritanceType.JOINED)  //default single table?
 //@DiscriminatorColumn(name = "USER_TYPE", discriminatorType = DiscriminatorType.STRING)
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)  //Table per class requires generation type TABLE
+    @GeneratedValue(strategy = GenerationType.IDENTITY)  //Table per class requires generation type TABLE
     private int id;
 
     @Column(name = "first_name")
