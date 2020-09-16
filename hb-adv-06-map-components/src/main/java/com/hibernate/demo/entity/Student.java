@@ -26,6 +26,16 @@ public class Student {
     @Embedded  //optional
     private Address homeAddress;
 
+    @AttributeOverrides({
+            @AttributeOverride(name="street",
+                    column=@Column(name = "BILLING_STREET")),
+            @AttributeOverride(name="city",
+                    column=@Column(name = "BILLING_CITY")),
+            @AttributeOverride(name="zipcode",
+                    column=@Column(name = "BILLING_ZIPCODE"))
+    })
+    private Address billingAddress;
+
     public Student() {
     }
 
@@ -33,6 +43,14 @@ public class Student {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+    }
+
+    public Address getBillingAddress() {
+        return billingAddress;
+    }
+
+    public void setBillingAddress(Address billingAddress) {
+        this.billingAddress = billingAddress;
     }
 
     public Address getHomeAddress() {

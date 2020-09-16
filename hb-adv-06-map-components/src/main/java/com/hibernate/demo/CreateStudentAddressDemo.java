@@ -21,12 +21,12 @@ public class CreateStudentAddressDemo {
         try(Session session = sessionFactory.getCurrentSession()) {
             Student student = new Student("john", "doe", "johnd@dfs.dd");
 
-            Address address = new Address("some street","some sity", "600222");
+            Address billingAddress = new Address("some bstreet","some bsity", "60b0222");
 
             session.beginTransaction();
 
 
-            student.setHomeAddress(address);
+            student.setBillingAddress(billingAddress);
 
 
             session.persist(student);
