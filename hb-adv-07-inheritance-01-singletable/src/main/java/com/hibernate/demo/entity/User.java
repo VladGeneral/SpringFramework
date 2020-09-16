@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table
+@Table(name = "users")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)  //default optional
 public class User {
 

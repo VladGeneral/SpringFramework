@@ -1,7 +1,7 @@
 package com.hibernate.demo;
 
 
-import com.hibernate.demo.entity.Status;
+import com.hibernate.demo.entity.Instructor;
 import com.hibernate.demo.entity.Student;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -15,12 +15,14 @@ public class CreateUserStudentInstructorDemo {
         SessionFactory sessionFactory = new Configuration()
                 .configure("hibernate.cfg.xml")
                 .addAnnotatedClass(Student.class)
+                .addAnnotatedClass(Instructor.class)
                 .buildSessionFactory();
 
 
         try(Session session = sessionFactory.getCurrentSession()) {
-            Student student = new Student("john", "doe", "johnd@dfs.dd", Status.ACTIVE);
-            Student student1 = new Student("joe", "moe", "joehnd@dfs.dd", Status.INACTIVE);
+            Student student = new Student("john", "doe", "johnd@dfs.dd","hibernate course");
+            Instructor instructor = new Instructor("joe", "moe", "joehnd@dfs.dd", 20000.00);
+
 
 
 
@@ -28,10 +30,8 @@ public class CreateUserStudentInstructorDemo {
 
 
             session.persist(student);
-            session.persist(student1);
+            session.persist(instructor);
 
-
-            session.persist(student);
 
             session.getTransaction().commit();
         }
