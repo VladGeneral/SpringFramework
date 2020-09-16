@@ -4,7 +4,6 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
-@DiscriminatorValue(value = "INSTRUCTOR")//any value here
 public class Instructor extends User {
     private Double salary;
 
