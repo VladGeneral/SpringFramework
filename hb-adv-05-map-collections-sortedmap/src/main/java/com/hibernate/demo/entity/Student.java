@@ -1,5 +1,7 @@
 package com.hibernate.demo.entity;
 
+import org.hibernate.annotations.SortComparator;
+
 import javax.persistence.*;
 import java.util.*;
 
@@ -24,8 +26,19 @@ public class Student {
     @CollectionTable(name = "image")
     @MapKeyColumn(name = "file_name" )   //key
     @Column(name = "image_name") // value
-    @OrderBy
+//    @OrderBy
+    @SortComparator(ReverseStringComparator.class)
     private Map<String, String> images = new TreeMap<>();
+
+    //reverse string
+    public static class ReverseStringComparator implements Comparator<String>{
+
+        @Override
+        public int compare(String o1, String o2) {
+
+            return o2.compareTo(o1);
+        }
+    }
 
     public Student() {
     }
