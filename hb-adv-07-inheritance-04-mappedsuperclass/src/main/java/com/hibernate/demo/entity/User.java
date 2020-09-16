@@ -6,10 +6,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-////@Entity //no need
-////@Table(name = "users")  //postgre 'user' not allowed  //no need this table
-////@Inheritance(strategy = InheritanceType.JOINED)  //no need
-//@MappedSuperclass
+//@Entity //no need
+//@Table(name = "users")  //postgre 'user' not allowed  //no need this table
+//@Inheritance(strategy = InheritanceType.JOINED)  //no need
+@MappedSuperclass
 public class User {
 
     @Id
