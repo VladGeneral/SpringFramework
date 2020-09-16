@@ -1,6 +1,7 @@
 package com.hibernate.demo;
 
-import com.hibernate.demo.entity.Address;
+
+import com.hibernate.demo.entity.Status;
 import com.hibernate.demo.entity.Student;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -14,19 +15,20 @@ public class CreateStudentDemo {
         SessionFactory sessionFactory = new Configuration()
                 .configure("hibernate.cfg.xml")
                 .addAnnotatedClass(Student.class)
-                .addAnnotatedClass(Address.class)
                 .buildSessionFactory();
 
 
         try(Session session = sessionFactory.getCurrentSession()) {
-            Student student = new Student("john", "doe", "johnd@dfs.dd");
+            Student student = new Student("john", "doe", "johnd@dfs.dd", Status.ACTIVE);
+            Student student1 = new Student("joe", "moe", "joehnd@dfs.dd", Status.INACTIVE);
 
-            Address billingAddress = new Address("some bstreet","some bsity", "60b0222");
+
 
             session.beginTransaction();
 
 
-            student.setBillingAddress(billingAddress);
+            session.persist(student);
+            session.persist(student1);
 
 
             session.persist(student);
