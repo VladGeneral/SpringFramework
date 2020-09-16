@@ -23,11 +23,8 @@ public class Student {
     @Column(name = "email")
     private String email;
 
-    @ElementCollection
-    @CollectionTable(name = "image")
-    @OrderColumn
-    @Column(name = "file_name")
-    private List<String> images = new ArrayList<>();
+    @Embedded  //optional
+    private Address homeAddress;
 
     public Student() {
     }
@@ -38,12 +35,12 @@ public class Student {
         this.email = email;
     }
 
-    public List<String> getImages() {
-        return images;
+    public Address getHomeAddress() {
+        return homeAddress;
     }
 
-    public void setImages(List<String> images) {
-        this.images = images;
+    public void setHomeAddress(Address homeAddress) {
+        this.homeAddress = homeAddress;
     }
 
     public int getId() {
