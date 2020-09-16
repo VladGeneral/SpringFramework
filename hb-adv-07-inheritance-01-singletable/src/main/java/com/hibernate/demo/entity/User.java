@@ -9,6 +9,7 @@ import java.util.Set;
 @Entity
 @Table(name = "users")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)  //default optional
+@DiscriminatorColumn(name = "USER_TYPE")
 public class User {
 
     @Id
